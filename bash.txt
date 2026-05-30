@@ -1,0 +1,15 @@
+source .venv/bin/activate
+
+
+cd ddim-custom
+# DDIM (deterministic)
+python main.py --config custom.yml --doc cmp_ddim --sample \
+  --sample_type generalized --eta 0.0 --timesteps 20 --total_samples 1 \
+  --ckpt /Users/nguyenngocminh/Documents/Vu/Ky8/TTNT_NC/ckpt_708000.pth \
+  -i ddim_compare --seed 1235
+
+# DDPM (stochastic)
+python main.py --config custom.yml --doc cmp_ddpm --sample \
+  --sample_type ddpm_noisy --timesteps 1000 --total_samples 1 \
+  --ckpt /Users/nguyenngocminh/Documents/Vu/Ky8/TTNT_NC/ckpt_708000.pth \
+  -i ddpm_compare --seed 1234

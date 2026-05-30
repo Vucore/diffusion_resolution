@@ -1,0 +1,52 @@
+data:
+    dataset: "CUSTOM"
+    data_dir: ""           # Ghi đè bằng --data_dir trên CLI, hoặc điền đường dẫn folder ảnh tại đây
+    image_size: 64         # Kích thước ảnh 64x64 cho tập ảnh của bạn
+    channels: 3
+    logit_transform: false
+    uniform_dequantization: false
+    gaussian_dequantization: false
+    random_flip: true
+    rescaled: true         # rescale [0,1] → [-1,1]
+    num_workers: 4
+    val_ratio: 0.05        # 5% ảnh dùng làm validation
+
+model:
+    type: "simple"
+    in_channels: 3
+    out_ch: 3
+    ch: 128
+    ch_mult: [1, 2, 2, 2, 4]          # Nhẹ hơn bản gốc, phù hợp image_size 64
+    num_res_blocks: 2
+    attn_resolutions: [16, ]
+    dropout: 0.1
+    var_type: fixedlarge
+    ema_rate: 0.9999
+    ema: true
+    resamp_with_conv: true
+
+diffusion:
+    beta_schedule: linear
+    beta_start: 0.0001
+    beta_end: 0.02
+    num_diffusion_timesteps: 1000
+
+training:
+    batch_size: 16         # Giảm nếu hết VRAM (8, 4, ...)
+    n_epochs: 10000
+    n_iters: 1000000       # Nâng từ 500k lên 1 trieu đê train tiesp từ mốc 500k của pretrained
+    snapshot_freq: 1000    # Lưu checkpoint mỗi 1000 steps
+
+sampling:
+    batch_size: 16
+    last_only: true
+    total_samples: 64      # Số ảnh sinh ra khi chạy --sample
+
+optim:
+    weight_decay: 0.0
+    optimizer: "Adam"
+    lr: 0.0002
+    beta1: 0.9
+    amsgrad: false
+    eps: 0.00000001
+    grad_clip: 1.0

@@ -1,0 +1,55 @@
+https://huggingface.co/datasets/saitsharipov/CelebA-HQ
+https://huggingface.co/datasets/marcosv/ffhq-dataset
+
+
+
+# (1) Denoising
+python main.py --ni --config custom.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg deno --sigma_0 0.05 -i celeba_deno_0_491
+
+# (2) Inpainting (mask mặc định trong code/config)
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg inp --sigma_0 0.0 -i celeba_inp_0_49
+
+# (3) Inpainting với mask lolcat
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg inp_lolcat --sigma_0 0.0 -i celeba_inp_lolcat_0_49
+
+# (4) Inpainting với mask lorem
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg inp_lorem --sigma_0 0.0 -i celeba_inp_lorem_0_49
+
+# (5) Deblur uniform
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg deblur_uni --sigma_0 0.0 -i celeba_deblur_uni_0_49
+
+# (6) Deblur gaussian
+python main.py --ni --config custom.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg deblur_gauss --sigma_0 0.0 -i celeba_deblur_gauss_0_491
+
+# (7) Deblur anisotropic
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg deblur_aniso --sigma_0 0.0 -i celeba_deblur_aniso_0_49
+
+# (8) Super-resolution x2
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr2 --sigma_0 0.05 -i celeba_sr2_0_49
+
+# (9) Super-resolution x4
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr4 --sigma_0 0.05 -i celeba_sr4_0_49
+
+# (10) Super-resolution x8
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr8 --sigma_0 0.05 -i celeba_sr8_0_49
+
+# (11) Super-resolution x16
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr16 --sigma_0 0.05 -i celeba_sr16_0_49
+
+# (12) Compressive sensing (ratio 2)
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg cs2 --sigma_0 0.0 -i celeba_cs2_0_49
+
+# (13) Compressive sensing (ratio 4)
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg cs4 --sigma_0 0.0 -i celeba_cs4_0_49
+
+# (14) Colorization
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg color --sigma_0 0.0 -i celeba_color_0_49
+
+# Bicubic SR x4
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr_bicubic4 --sigma_0 0.05 -i celeba_sr_bicubic4_0_49
+
+# Bicubic SR x8
+python main.py --ni --config celeba.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr_bicubic8 --sigma_0 0.05 -i celeba_sr_bicubic8_0_49
+
+# Bicubic SR x16
+python main.py --ni --config custom.yml --doc celeba --timesteps 20 --eta 0.85 --etaB 1 --deg sr_bicubic16 --sigma_0 0.05 -i celeba_sr_bicubic16_0_491
